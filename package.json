@@ -1,0 +1,27 @@
+{
+  "name": "scl-2018-01-fe-markdown",
+  "version": "1.0.0",
+  "description": "library creation project-Laboratoria",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown.git"
+  },
+  "keywords": [
+    "node.js",
+    "laboratoria",
+    "library"
+  ],
+  "author": "Nataly Verdugo Nogue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown/issues"
+  },
+  "homepage": "https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown#readme",
+  "devDependencies": {
+    "jest": "23.5.0"
+  }
+}
