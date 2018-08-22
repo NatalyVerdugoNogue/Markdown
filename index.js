@@ -1,12 +1,31 @@
-#! / usr / bin / env node
+#!/usr/bin/env node
 
-let fs = require('fs');
+let fs = require('fs')
 const Marked = require('marked');
+const sc = require('status-check');
 
 
 const getArchive = () => {
+  const args = process.argv;
+  const archive = args[2];
+  console.log('arg', args[3]);
+
+  return archive;
+}
+
+
+const getOptions = () => {
+  const args = process.argv;
+  const options = args[3];
+
+  return options;
+}
+
+
+
+const getDataArchive = (archive) => {
   return new Promise((resolve) => {
-    fs.readFile('readme-laboratoria.md', 'utf-8', (err, data) => {
+    fs.readFile(archive, 'utf-8', (err, data) => {
       if (err) {
         console.log('error:', err);
       } else {
@@ -19,6 +38,13 @@ const getArchive = () => {
 };
 
 
+const getStatusLinks = () => {
+  // let linksstg = links.toString();
+  sc.testLinkStatus('http://google.com/', function (data) {
+    console.log(data);
+  }, true);
+}
+
 const markdownLinkExtractor = (markdown) => {
   const links = [];
 
@@ -30,19 +56,21 @@ const markdownLinkExtractor = (markdown) => {
   Marked.InlineLexer.rules.breaks.link = linkWithImageSizeSupport;
 
   renderer.link = function (href, title, text) {
-    links.push({
-      href: href,
-      // text: text,
-      // title: title,
-    });
+    links.push(href)
+    // ({
+    //   href: href,
+    // text: text,
+    // title: title,
+    // });
   };
   renderer.image = function (href, title, text) {
     href = href.replace(/ =\d*%?x\d*%?$/, '');
-    links.push({
-      href: href,
-      text: text,
-      title: title,
-    });
+    links.push(href)
+    // ({
+    //   href: href,
+    //   text: text,
+    //   title: title,
+    // });
   };
   Marked(markdown, { renderer: renderer });
   console.log('total:', links.length);
@@ -51,9 +79,13 @@ const markdownLinkExtractor = (markdown) => {
 };
 
 const obtener = () => {
-  getArchive().then((markdown) => {
-    markdownLinkExtractor(markdown);
+  let archive = getArchive();
+  getDataArchive(archive).then((markdown) => {
+    let links = markdownLinkExtractor(markdown);
+    getStatusLinks()
+
   });
+
 };
 
 obtener()
