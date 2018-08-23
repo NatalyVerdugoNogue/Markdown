@@ -1,12 +1,14 @@
 const getArchive = require('./lib/mdlinks').getArchive;
 const getDataArchive = require('./lib/mdlinks').getDataArchive;
+const markdownLinkExtractor = require('./lib/mdlinks').markdownLinkExtractor;
 
 
 describe('File by terminal', () => {
   describe('When entering md file in terminal, return', () => {
     test('return error, due to lack of file', () => {
       expect(getArchive(['/home/nataly/.nvm/versions/node/v8.11.2/bin/node',
-        '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js'])).toBe('error');
+        '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js']
+      )).toBe('error');
     });
   }); (
     describe('When entering md file in terminal, return', () => {
@@ -24,3 +26,11 @@ describe('Read file markdown', () => {
     expect(getDataArchive('file-test.md')).resolves.toBe(`Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)`);
   });
 });
+
+
+describe('Capture links', () => {
+  test('Extract links from text from file markdown', () => {
+    expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)')).toEqual([{ href: 'https://nodejs.org/', text: 'Node.js', title: null }]);
+  });
+});
+
