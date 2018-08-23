@@ -2,7 +2,7 @@
   "name": "scl-2018-01-fe-markdown",
   "version": "1.0.0",
   "description": "library creation project-Laboratoria",
-  "main": "index.js",
+  "main": "mdlinks.js",
   "scripts": {
     "test": "jest",
     "config": "chmod +x index.js && npm link"
@@ -19,14 +19,14 @@
   "author": "Nataly Verdugo Nogue",
   "license": "ISC",
   "bin": {
-    "md-links": "./index.js"
+    "md-links": "./mdlinks.js"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "files": [
     "index.js",
-    "cli.js"
+    "mdlinks.js"
   ],
   "bugs": {
     "url": "https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown/issues"
