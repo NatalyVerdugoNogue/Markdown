@@ -2,13 +2,13 @@
 
 let fs = require('fs')
 const Marked = require('marked');
-const sc = require('status-check');
+
 
 
 const getArchive = () => {
   const args = process.argv;
   const archive = args[2];
-  console.log('arg', args[3]);
+  console.log('arg', args[2]);
 
   return archive;
 }
@@ -29,21 +29,30 @@ const getDataArchive = (archive) => {
       if (err) {
         console.log('error:', err);
       } else {
-        // console.log(data);
         let markdown = data;
+        console.log('markdown', markdown);
         resolve(markdown);
       }
     });
   });
 };
 
+module.exports = getDataArchive;
 
-const getStatusLinks = () => {
-  // let linksstg = links.toString();
-  sc.testLinkStatus('http://google.com/', function (data) {
-    console.log(data);
-  }, true);
-}
+// const getStatusLinks = () => {
+//   var myRequest = new Request('https://nodejs.org/api/path.html');
+
+//   fetch(myRequest).then(function (response) {
+//     console.log(response.status);
+// response.blob().then(function(myBlob) {
+//   var objectURL = URL.createObjectURL(myBlob);
+//   myImage.src = objectURL;
+// });
+//   });
+// }
+
+
+
 
 const markdownLinkExtractor = (markdown) => {
   const links = [];
@@ -81,14 +90,16 @@ const markdownLinkExtractor = (markdown) => {
 const obtener = () => {
   let archive = getArchive();
   getDataArchive(archive).then((markdown) => {
-    let links = markdownLinkExtractor(markdown);
-    getStatusLinks()
+    markdownLinkExtractor(markdown);
 
   });
 
 };
 
-obtener()
+
+
+
+
 
 // console.log('links', getArchive());
 
