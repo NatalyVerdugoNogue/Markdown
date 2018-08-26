@@ -1,0 +1,8 @@
+
+<!-- 
+
+describe('All file must be relative path', () => {
+  test('Change absolute path to relative', () => {
+    expect(('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)')).toEqual([{ href: 'https://nodejs.org/', text: 'Node.js', title: null }]);
+  });
+}); -->

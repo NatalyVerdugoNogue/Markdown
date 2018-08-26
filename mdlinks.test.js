@@ -1,6 +1,7 @@
 const getArchive = require('./lib/mdlinks').getArchive;
 const getDataArchive = require('./lib/mdlinks').getDataArchive;
 const markdownLinkExtractor = require('./lib/mdlinks').markdownLinkExtractor;
+const getStatusLink=require('./lib/mdlinks').getStatusLink
 
 
 describe('File by terminal', () => {
@@ -30,7 +31,15 @@ describe('Read file markdown', () => {
 
 describe('Capture links', () => {
   test('Extract links from text from file markdown', () => {
-    expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)')).toEqual([{ href: 'https://nodejs.org/', text: 'Node.js', title: null }]);
+    expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)', 'file-test.md')).toEqual([{ path: 'file-test.md', href: 'https://nodejs.org/', text: 'Node.js' }]);
   });
 });
 
+describe('Get links status', () => {
+  test.only('When entering array with liks get status', () => {
+    expect(
+      getStatusLink([{ path: 'file-test.md', href: 'https://nodejs.org/', text: 'Node.js', title: null }])
+    )
+    .resolves.toBe([{ path: 'file-test.md', href: 'https://nodejs.org/', text: 'Node.js', status: 200, statusText: 'OK' }]);
+  });
+});
