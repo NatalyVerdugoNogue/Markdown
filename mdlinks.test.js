@@ -1,7 +1,9 @@
 const getArchive = require('./lib/mdlinks').getArchive;
+const switchAbsolute = require('./lib/mdlinks').switchAbsolute;
 const getDataArchive = require('./lib/mdlinks').getDataArchive;
 const markdownLinkExtractor = require('./lib/mdlinks').markdownLinkExtractor;
-const getStatusLink=require('./lib/mdlinks').getStatusLink
+const getLine = require('./lib/mdlinks').getLine;
+const getStatusLink = require('./lib/mdlinks').getStatusLink;
 
 
 describe('File by terminal', () => {
@@ -22,24 +24,52 @@ describe('File by terminal', () => {
 });
 
 
+describe('All files must be absolute path', () => {
+  test('Change the relative path to absolute', () => {
+    expect(switchAbsolute('file-test.md'))
+      .toBe('/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md');
+  });
+});
+
+
 describe('Read file markdown', () => {
   test('If enter md file, return text of file', () => {
-    expect(getDataArchive('file-test.md')).resolves.toBe(`Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)`);
+    expect(getDataArchive('/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md'))
+      .resolves.toBe(`Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)`);
   });
 });
 
 
 describe('Capture links', () => {
   test('Extract links from text from file markdown', () => {
-    expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)', 'file-test.md')).toEqual([{ path: 'file-test.md', href: 'https://nodejs.org/', text: 'Node.js' }]);
+    expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)',
+      '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md'))
+      .toEqual([{
+        path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
+        href: 'https://nodejs.org/', text: 'Node.js'
+      }]);
   });
 });
 
+
+describe('Get the line that contains the link', () => {
+  test('show the line number of the link', () => {
+    expect(getLine('https://nodejs.org/')).toBe(1);
+  });
+});
+
+
 describe('Get links status', () => {
-  test.only('When entering array with liks get status', () => {
+  test('When entering array with liks get status', () => {
     expect(
-      getStatusLink([{ path: 'file-test.md', href: 'https://nodejs.org/', text: 'Node.js', title: null }])
+      getStatusLink([{
+        path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
+        href: 'https://nodejs.org/', text: 'Node.js', title: null
+      }])
     )
-    .resolves.toBe([{ path: 'file-test.md', href: 'https://nodejs.org/', text: 'Node.js', status: 200, statusText: 'OK' }]);
+      .resolves.toBe([{
+        path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
+        href: 'https://nodejs.org/', text: 'Node.js', status: 200, statusText: 'OK'
+      }]);
   });
 });
