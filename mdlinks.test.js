@@ -26,7 +26,7 @@ describe('File by terminal', () => {
 
 describe('All files must be absolute path', () => {
   test('Change the relative path to absolute', () => {
-    expect(switchAbsolute('file-test.md'))
+    expect(switchAbsolute('file-test.md', '--validate'))
       .toBe('/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md');
   });
 });
@@ -43,18 +43,31 @@ describe('Read file markdown', () => {
 describe('Capture links', () => {
   test('Extract links from text from file markdown', () => {
     expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)',
-      '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md'))
+      '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md', '--validate'))
       .toEqual([{
         path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
-        href: 'https://nodejs.org/', text: 'Node.js'
+        href: 'https://nodejs.org/',
+        text: 'Node.js'
       }]);
   });
 });
 
 
 describe('Get the line that contains the link', () => {
-  test('show the line number of the link', () => {
-    expect(getLine('https://nodejs.org/')).toBe(1);
+  test('Show the line number of the link', () => {
+    expect(
+      getLine('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)', [{
+        path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
+        href: 'https://nodejs.org/',
+        text: 'Node.js'
+      }], '--validate')
+    )
+      .resolves.toEqual([{
+        path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        line: 1
+      }]);
   });
 });
 
@@ -64,12 +77,18 @@ describe('Get links status', () => {
     expect(
       getStatusLink([{
         path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
-        href: 'https://nodejs.org/', text: 'Node.js', title: null
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        line: 1
       }])
     )
-      .resolves.toBe([{
+      .resolves.toEqual([{
         path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
-        href: 'https://nodejs.org/', text: 'Node.js', status: 200, statusText: 'OK'
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        line: 1,
+        status: 200,
+        statusText: 'OK'
       }]);
   });
 });
