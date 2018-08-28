@@ -1,9 +1,4 @@
-const getArchive = require('./lib/mdlinks').getArchive;
-const switchAbsolute = require('./lib/mdlinks').switchAbsolute;
-const getDataArchive = require('./lib/mdlinks').getDataArchive;
-const markdownLinkExtractor = require('./lib/mdlinks').markdownLinkExtractor;
-const getLine = require('./lib/mdlinks').getLine;
-const getStatusLink = require('./lib/mdlinks').getStatusLink;
+const { getArchive, switchAbsolute, getDataArchive, markdownLinkExtractor, getLine, getStatusLink } = require('../lib/mdlinks')
 
 
 describe('File by terminal', () => {
@@ -11,7 +6,7 @@ describe('File by terminal', () => {
     test('return error, due to lack of file', () => {
       expect(getArchive(['/home/nataly/.nvm/versions/node/v8.11.2/bin/node',
         '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js']
-      )).toBe('error');
+      )).toBe('Debe escribir un archivo markdown');
     });
   }); (
     describe('When entering md file in terminal, return', () => {
@@ -26,7 +21,7 @@ describe('File by terminal', () => {
 
 describe('All files must be absolute path', () => {
   test('Change the relative path to absolute', () => {
-    expect(switchAbsolute('file-test.md', '--validate'))
+    expect(switchAbsolute('file-test.md'))
       .toBe('/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md');
   });
 });
@@ -43,7 +38,7 @@ describe('Read file markdown', () => {
 describe('Capture links', () => {
   test('Extract links from text from file markdown', () => {
     expect(markdownLinkExtractor('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)',
-      '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md', '--validate'))
+      '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md'))
       .toEqual([{
         path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
         href: 'https://nodejs.org/',
@@ -60,7 +55,7 @@ describe('Get the line that contains the link', () => {
         path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
         href: 'https://nodejs.org/',
         text: 'Node.js'
-      }], '--validate')
+      }])
     )
       .resolves.toEqual([{
         path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
