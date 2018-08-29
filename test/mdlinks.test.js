@@ -1,4 +1,4 @@
-const { getArchive, switchAbsolute, getDataArchive, markdownLinkExtractor, getLine, getStatusLink } = require('../lib/mdlinks')
+const { getArchive, switchAbsolute, getDataArchive, markdownLinkExtractor, getLine, getStatusLink } = require('../lib/mdlinks');
 
 
 describe('File by terminal', () => {
@@ -29,8 +29,7 @@ describe('All files must be absolute path', () => {
 
 describe('Read file markdown', () => {
   test('If enter md file, return text of file', () => {
-    expect(getDataArchive('/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md'))
-      .resolves.toBe(`Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)`);
+    expect(getDataArchive('/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md')).resolves.toBe('Lorem ipsum dolor sit amet. [Node.js](https://nodejs.org/)');
   });
 });
 

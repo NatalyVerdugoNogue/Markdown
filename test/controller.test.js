@@ -8,7 +8,10 @@ describe('Response controller function', () => {
         '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js',
         'file-test.md',
         '--stats']
-      )).resolves.toEqual({ Total: 1, Unique: 1 });
+      )).resolves.toEqual({
+        Total: 1,
+        Unique: 1
+      });
     });
   }); (
     describe('When option is undefined', () => {
@@ -19,25 +22,23 @@ describe('Response controller function', () => {
           'file-test.md']
         )).resolves.toEqual(['/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md: 1 https://nodejs.org/ Node.js']);
       });
-    })); (
-      describe('When option is --validate', () => {
-        test('return error', () => {
-          expect(controllerOption(['/home/nataly/.nvm/versions/node/v8.11.2/bin/node',
-            '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js',
-            'file-test.md',
-            '--validate']
-          )).resolves.toEqual(['/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md: 1 https://nodejs.org/ OK 200 Node.js']);
-        });
-      })); (
-        describe('When option is another text', () => {
-          test('return path, line, link, text-status, status-code, text-link', () => {
-            expect(controllerOption(['/home/nataly/.nvm/versions/node/v8.11.2/bin/node',
-              '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js',
-              'file-test.md',
-              '--another']
-            )).toBe('Debe ingresar una opción valida');
-          });
-        }));
+    })); (describe('When option is --validate', () => {
+    test('return error', () => {
+      expect(controllerOption(['/home/nataly/.nvm/versions/node/v8.11.2/bin/node',
+        '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js',
+        'file-test.md',
+        '--validate']
+      )).resolves.toEqual(['/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md: 1 https://nodejs.org/ OK 200 Node.js']);
+    });
+  })); (
+    describe('When option is another text', () => {
+      test('return path, line, link, text-status, status-code, text-link', () => {
+        expect(controllerOption(['/home/nataly/.nvm/versions/node/v8.11.2/bin/node',
+          '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/mdlinks.js',
+          'file-test.md',
+          '--another'])).toBe('Debe ingresar una opción valida');
+      });
+    }));
 });
 
 
@@ -47,8 +48,10 @@ describe('Get information of links in file', () => {
       path: '/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/file-test.md',
       href: 'https://nodejs.org/',
       text: 'Node.js'
-    }]))
-      .toEqual({ Total: 1, Unique: 1 });
+    }])).toEqual({ 
+      Total: 1, 
+      Unique: 1 
+    });
   });
 });
 

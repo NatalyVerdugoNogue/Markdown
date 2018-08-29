@@ -4,6 +4,8 @@
   "description": "library creation project-Laboratoria",
   "main": "mdlinks.js",
   "scripts": {
+    "eslint": "eslint --ext .js lib/ test/",
+    "pretest": "npm run eslint",
     "test": "jest",
     "config": "chmod +x index.js && npm link"
   },
@@ -26,7 +28,8 @@
   },
   "files": [
     "index.js",
-    "mdlinks.js"
+    "mdlinks.js",
+    "controller.js"
   ],
   "bugs": {
     "url": "https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown/issues"
@@ -37,7 +40,11 @@
   },
   "dependencies": {
     "axios": "0.18.0",
+    "eslint": "5.4.0",
     "marked": "0.5.0",
     "string-search": "1.2.0"
+  },
+  "env": {
+    "jest": true
   }
 }

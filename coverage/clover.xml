@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1535468961293" clover="3.2.0">
-  <project timestamp="1535468961293" name="All files">
+<coverage generated="1535549115221" clover="3.2.0">
+  <project timestamp="1535549115221" name="All files">
     <metrics statements="105" coveredstatements="89" conditionals="10" coveredconditionals="9" methods="35" coveredmethods="25" elements="150" coveredelements="123" complexity="0" loc="105" ncloc="105" packages="1" files="2" classes="2">
       <file name="controller.js" path="/home/nataly/Documentos/Laboratoria/especializacion/markdown/scl-2018-01-FE-markdown/lib/controller.js">
         <metrics statements="44" coveredstatements="40" conditionals="6" coveredconditionals="6" methods="13" coveredmethods="10"/>
