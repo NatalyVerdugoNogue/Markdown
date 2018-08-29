@@ -3,7 +3,10 @@
 ## Installation
 
 ```sh
-$ npm install --save 
+$ npm install --save md-links-nvn
+```
+```sh
+$ npm install -g https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown 
 ```
 
 #### Executable configuration
@@ -19,6 +22,11 @@ $ npm run config
 import mdLinks from ''; // ES6
 var mdLinks = require(''); // ES5 with npm
 ```
+
+## Description
+
+When writing the path of a reduction file, and if it contains links, depending on the options entered, the links, the line and the text of all the links in the file will be displayed.
+
 
 ## Usage
 
@@ -77,6 +85,10 @@ $ npm test
 ## License
 
 ISC
+
+## Action plan
+
+[Trello](https://trello.com/b/uSW6xQs4/markdown-links)
 
 ## Author
 - Nataly Verdugo 
