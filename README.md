@@ -19,8 +19,8 @@ $ npm run config
 ## Importing
 
 ```javascript
-import mdLinks from ''; // ES6
-var mdLinks = require(''); // ES5 with npm
+import mdLinks from 'md-links-nvn'; // ES6
+var mdLinks = require('md-links-nvn'); // ES5 with npm
 ```
 
 ## Description
@@ -76,7 +76,8 @@ md-links file-test.md --stats
 ```
 
 
-## Tests
+## Tests 
+**Clone of git**
 
 ```javascript
 $ npm test 
