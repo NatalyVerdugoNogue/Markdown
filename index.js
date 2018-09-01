@@ -4,7 +4,7 @@ const getInfoTerminal = require('./lib/mdlinks').getInfoTerminal;
 const controllerOption = require('./lib/controller').controllerOption;
 
 const mdLinks = () => {
-  let args = getInfoTerminal();
+  const args = getInfoTerminal();
   return controllerOption(args);
 };
 

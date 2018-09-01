@@ -15,7 +15,6 @@ $ npm install -g https://github.com/NatalyVerdugoNogue/scl-2018-01-FE-markdown
 $ npm run config 
 ```
 
-
 ## Importing
 
 ```javascript
@@ -82,6 +81,10 @@ md-links file-test.md --stats
 ```javascript
 $ npm test 
 ```
+
+## Version
+
+1.0.1
 
 ## License
 

@@ -2,7 +2,7 @@
   "name": "md-links-nvn",
   "version": "1.0.0",
   "description": "library creation project-Laboratoria",
-  "main": "mdlinks.js",
+  "main": "index.js",
   "scripts": {
     "eslint": "eslint --ext .js lib/ test/",
     "pretest": "npm run eslint",
@@ -21,7 +21,7 @@
   "author": "Nataly Verdugo Nogue",
   "license": "ISC",
   "bin": {
-    "md-links": "./mdlinks.js"
+    "md-links": "./index.js"
   },
   "engines": {
     "node": ">=0.10.0"
